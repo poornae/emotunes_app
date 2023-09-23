@@ -1,20 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-  const fetchBackend = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000');
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error fetching data from backend:', error);
-    }
-  };
+  const [songs, setSongs] = useState([]);
+
+  useEffect(() => {
+    const fetchSongs = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/songs');
+        setSongs(response.data);
+      } catch (error) {
+        console.error('Error fetching songs:', error);
+      }
+    };
+    fetchSongs();
+  }, []);
 
   return (
     <div className="App">
       <h1>EmoTunes</h1>
-      <button onClick={fetchBackend}>Test Backend</button>
+      <ul>
+        {songs.map(song => (
+          <li key={song.id}>{song.title} by {song.artist}</li>
+        ))}
+      </ul>
     </div>
   );
 }
