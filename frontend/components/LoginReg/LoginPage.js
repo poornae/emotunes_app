@@ -1,42 +1,29 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-function LoginPage() {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+function Login() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const handleLogin = () => {
+        if (!username || !password) {
+            setErrorMessage('Please enter both username and password.');
+            return;
+        }
+        // Send the username and password to the server for authentication
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Implement login logic here (e.g., send data to your backend for authentication)
-  };
+        // On successful login, redirect to the song recommendation page
+    };
 
-  return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <button type="submit">Login</button>
-      </form>
-      <Link to="/">Back to Home</Link>
-    </div>
-  );
+    return (
+        <div>
+            <h1>Login</h1>
+            <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
+            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <button onClick={handleLogin}>Login</button>
+            {errorMessage && <p>{errorMessage}</p>}
+        </div>
+    );
 }
 
-export default LoginPage;
+export default Login;
