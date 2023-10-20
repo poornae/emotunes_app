@@ -8,6 +8,9 @@ const session = require('express-session');
 const app = express();
 const PORT = 5000;
 
+const { errorHandler } = require('./middleware/errorMiddleware');
+const { checkUserSession } = require('./middleware/authMiddleware');
+
 // Connect to MySQL
 const pool = mysql.createPool({
     host: 'your_mysql_host',
@@ -27,6 +30,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
+app.use('/api/feedback', checkUserSession, feedbackRoutes);
+app.use(errorHandler);
 
 // Routes would go here...
 
