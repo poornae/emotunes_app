@@ -19,7 +19,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration",
+    "test:functional": "jest tests/functional",
+    "test:regression": "jest tests/regression",
+    "test": "npm run test:unit && npm run test:integration && npm run test:functional && npm run test:regression",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
