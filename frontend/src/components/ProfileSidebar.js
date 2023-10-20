@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ProfileSidebar.css';
+import '../styles/ProfileSidebar.css';
 
 function ProfileSidebar({ userId }) {
     const [userData, setUserData] = useState({});

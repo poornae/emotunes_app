@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import LandingPage from './LandingPage';
-import Login from './Login';
-import Register from './Register';
-import Dashboard from './Dashboard';
-import WebcamCapture from './WebcamCapture';
-import ProfileSidebar from './ProfileSidebar';
+import LandingPage from './views/LandingPage';
+import Login from './views/Login';
+import Register from './views/Register';
+import Dashboard from './views/Dashboard';
+import WebcamCapture from './components/WebcamCapture';
+import ProfileSidebar from './components/ProfileSidebar';
 import './App.css';
 
 function App() {

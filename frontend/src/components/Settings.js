@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Settings.css';
+import '../styles/Settings.css';
 
 function Settings() {
     const [theme, setTheme] = useState('light');

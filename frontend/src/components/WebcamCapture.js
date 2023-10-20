@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Webcam from 'react-webcam';
-import './WebcamCapture.css';
+import '../styles/WebcamCapture.css';
 
 function WebcamCapture({ setCapturedImage, setEmotion }) {
     const webcamRef = useRef(null);
