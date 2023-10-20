@@ -5,6 +5,10 @@ const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 
+const userRoutes = require('./routes/userRoutes');
+const imageRoutes = require('./routes/imageRoutes');
+const feedbackRoutes = require('./routes/feedbackRoutes');
+
 const app = express();
 const PORT = 5000;
 
@@ -33,7 +37,10 @@ app.use(session({
 app.use('/api/feedback', checkUserSession, feedbackRoutes);
 app.use(errorHandler);
 
-// Routes would go here...
+// Routes
+app.use('/api/users', userRoutes);
+app.use('/api/images', imageRoutes);
+app.use('/api/feedback', checkUserSession, feedbackRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
