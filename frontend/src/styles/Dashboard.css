@@ -1,0 +1,36 @@
+.dashboard-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    background: linear-gradient(45deg, #FFB6C1 30%, #FFD700 90%);
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.content img {
+    margin-top: 2rem;
+    max-width: 300px;
+}
+
+.content h2 {
+    margin-top: 2rem;
+    color: #333;
+}
+
+.content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.content li {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}

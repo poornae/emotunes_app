@@ -1,0 +1,54 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #FF8E53 30%, #FE6B8B 90%);
+    color: white;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-top: 2rem;
+}
+
+.register-form input {
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.register-form button {
+    padding: 10px;
+    background-color: white;
+    color: #FF8E53;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-form button:hover {
+    background-color: #FE6B8B;
+    color: white;
+}
+
+.error-message {
+    color: yellow;
+    margin-top: 1rem;
+}
+
+.login-link {
+    margin-top: 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}

@@ -1,36 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import LandingPage from './LandingPage';
+import Login from './Login';
+import Register from './Register';
+import Dashboard from './Dashboard';
+import WebcamCapture from './WebcamCapture';
+import ProfileSidebar from './ProfileSidebar';
 import './App.css';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import LandingPage from './components/LandingPage';
-// import LoginPage from './components/LoginPage';
-// import RegistrationPage from './components/RegistrationPage';
-// import EmotionDetector from './frontend/components/EmotionDetector/EmotionDetector';
 
 function App() {
-  const [songs, setSongs] = useState([]);
-
-  useEffect(() => {
-    const fetchSongs = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/songs');
-        setSongs(response.data);
-      } catch (error) {
-        console.error('Error fetching songs:', error);
-      }
-    };
-    fetchSongs();
-  }, []);
-
   return (
-    <div className="App">
-      <h1>EmoTunes</h1>
-      <ul>
-        {songs.map(song => (
-          <li key={song.id}>{song.title} by {song.artist}</li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <div className="app-container">
+        <nav className="app-nav">
+          <Link to="/">Home</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </nav>
+        <Switch>
+          <Route path="/" exact component={LandingPage} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/webcam" component={WebcamCapture} />
+          <Route path="/profile" component={ProfileSidebar} />
+          <Route path="/settings" component={Settings} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
