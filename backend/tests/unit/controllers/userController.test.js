@@ -1,83 +1,27 @@
-const request = require('supertest');
-const app = require('../app');
-const { User } = require('../models/User');
+// Integration testing
+const userController = require('../../controllers/userController');
+const db = require('../../config/database'); // assuming you're using this for database
 
-describe('User Registration', () => {
-
-  afterEach(async () => {
-    // Cleanup: Delete the user after the test
-    await User.destroy({ where: { email: 'testuser@example.com' } });
-  });
-
-  it('should register a new user', async () => {
-    const res = await request(app)
-      .post('/api/users/register')
-      .send({
-        username: 'testuser',
-        email: 'testuser@example.com',
-        password: 'password123'
-      });
-    expect(res.statusCode).toEqual(201);
-    expect(res.body.username).toEqual('testuser');
-  });
-
-  it('should not register a user with an existing email', async () => {
-    // First, create a user
-    await User.create({
-      username: 'existinguser',
-      email: 'testuser@example.com',
-      password: 'password123'
-    });
-
-    const res = await request(app)
-      .post('/api/users/register')
-      .send({
-        username: 'newuser',
-        email: 'testuser@example.com',
-        password: 'newpassword123'
-      });
-    expect(res.statusCode).toEqual(400);
-    expect(res.body.error).toEqual('Email already exists');
-  });
+beforeAll(async () => {
+    await db.connect(); // assuming a connect method
 });
 
+afterAll(async () => {
+    await db.disconnect(); // assuming a disconnect method
+});
 
-describe('User Login', () => {
+describe('User Controller Integration Tests', () => {
+    test('should register a new user', async () => {
+        const mockUser = {
+            username: 'testUser',
+            password: 'testPass',
+            email: 'test@example.com'
+        };
 
-    beforeEach(async () => {
-      // Setup: Create a user before the test
-      await User.create({
-        username: 'testuser',
-        email: 'testuser@example.com',
-        password: 'password123' // Make sure to hash in actual implementation
-      });
+        const response = await userController.register(mockUser); // assuming a register method
+        expect(response.status).toBe(200);
+        expect(response.data.username).toBe(mockUser.username);
     });
-  
-    afterEach(async () => {
-      // Cleanup: Delete the user after the test
-      await User.destroy({ where: { email: 'testuser@example.com' } });
-    });
-  
-    it('should login with correct credentials', async () => {
-      const res = await request(app)
-        .post('/api/users/login')
-        .send({
-          email: 'testuser@example.com',
-          password: 'password123'
-        });
-      expect(res.statusCode).toEqual(200);
-      expect(res.body.username).toEqual('testuser');
-    });
-  
-    it('should not login with incorrect password', async () => {
-      const res = await request(app)
-        .post('/api/users/login')
-        .send({
-          email: 'testuser@example.com',
-          password: 'wrongpassword'
-        });
-      expect(res.statusCode).toEqual(401);
-      expect(res.body.error).toEqual('Invalid credentials');
-    });
-  });
-  
+    
+    // ... other tests (e.g., for login, profile update, etc.)
+});

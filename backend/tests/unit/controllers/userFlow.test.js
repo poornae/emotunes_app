@@ -1,3 +1,4 @@
+// Functional testing
 const request = require('supertest');
 const app = require('../../app');
 
@@ -22,7 +23,5 @@ describe('User Flow Functional Tests', () => {
             });
         expect(res2.status).toBe(200);
 
-        
     });
 });
-
