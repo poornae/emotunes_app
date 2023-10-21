@@ -6,6 +6,7 @@ import Register from './views/Register';
 import Dashboard from './views/Dashboard';
 import WebcamCapture from './components/WebcamCapture';
 import ProfileSidebar from './components/ProfileSidebar';
+import Settings from './components/Settings';
 import './App.css';
 
 function App() {

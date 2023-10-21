@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import WebcamCapture from './WebcamCapture';
-import ProfileSidebar from './ProfileSidebar';
-import '../views/Dashboard.css';
+import WebcamCapture from '../components/WebcamCapture.js';
+import ProfileSidebar from './components/ProfileSidebar.js';
+import '../styles/Dashboard.css';
 
 function Dashboard() {
     const [capturedImage, setCapturedImage] = useState(null);
