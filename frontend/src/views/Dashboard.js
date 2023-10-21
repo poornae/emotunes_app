@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import WebcamCapture from '../components/WebcamCapture.js';
 import ProfileSidebar from './components/ProfileSidebar.js';
 import '../styles/Dashboard.css';
